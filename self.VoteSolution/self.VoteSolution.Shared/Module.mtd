@@ -1,0 +1,60 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "3ede5086-0591-4ae3-86c1-0b108bc3170c",
+  "Name": "VoteSolution",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "self.VoteSolution.Client",
+  "ClientBaseAssemblyName": "self.VoteSolution.ClientBase",
+  "ClientBaseNamespace": "self.VoteSolution.ClientBase",
+  "ClientNamespace": "self.VoteSolution.Client",
+  "Code": "VoteSol",
+  "CompanyCode": "self",
+  "Cover": {
+    "NameGuid": "a9c32bc1-b9f0-4eb7-8bdb-349de559d06c",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "6c9546c4-9127-4663-b40e-4b844f56edd2",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "c15273c6-990d-4698-971d-ba24c5137629",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "DesktopViews": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "self.VoteSolution",
+  "IsolatedAssemblyName": "self.VoteSolution.Isolated",
+  "IsolatedNamespace": "self.VoteSolution.Isolated",
+  "IsVisible": false,
+  "OrderedSpecialFolders": [],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "self.VoteSolution",
+  "ServerAssemblyName": "self.VoteSolution.Server",
+  "ServerNamespace": "self.VoteSolution.Server",
+  "SharedAssemblyName": "self.VoteSolution.Shared",
+  "SharedNamespace": "self.VoteSolution.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 11
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 11
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}
