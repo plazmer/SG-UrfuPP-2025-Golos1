@@ -33,6 +33,19 @@
       "MinVersion": ""
     }
   ],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "b73fb83b-04c5-411a-a7b7-264804d69812"
+    },
+    {
+      "ItemId": "feeff010-5caf-4392-b57d-c8e778e75e8a",
+      "PreviousItemId": "b73fb83b-04c5-411a-a7b7-264804d69812"
+    },
+    {
+      "ItemId": "aec2f1ed-77df-488d-af54-47186602378f",
+      "PreviousItemId": "feeff010-5caf-4392-b57d-c8e778e75e8a"
+    }
+  ],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "InterfaceNamespace": "self.Vote",
