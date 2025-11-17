@@ -1,0 +1,192 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "c3f18fd1-a060-4962-b5d5-abf05819f0c3",
+  "Name": "Vote",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "pproj.Vote.Client",
+  "ClientBaseAssemblyName": "pproj.Vote.ClientBase",
+  "ClientBaseNamespace": "pproj.Vote.ClientBase",
+  "ClientNamespace": "pproj.Vote.Client",
+  "Code": "Vote",
+  "CompanyCode": "pproj",
+  "Cover": {
+    "NameGuid": "274b09d9-a951-4ade-bb19-5b4abee1c84a",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "a75e0d3c-77d1-4e78-9bf4-3f85f9a8e4bb",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "832d5097-69a1-4828-8482-ec424cf885ba",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "e800955e-306f-4ed9-a3c7-3c6b1d8b32a5",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    }
+  ],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "6d57432d-5d53-4124-8f11-509df70bf1f0"
+    },
+    {
+      "ItemId": "ca630781-b9e9-4c51-bddd-37cf589e822a",
+      "PreviousItemId": "6d57432d-5d53-4124-8f11-509df70bf1f0"
+    },
+    {
+      "ItemId": "a5f5f12a-510d-4d85-b4c1-e040a2434e5d",
+      "PreviousItemId": "ca630781-b9e9-4c51-bddd-37cf589e822a"
+    }
+  ],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "pproj.Vote",
+  "IsolatedAssemblyName": "pproj.Vote.Isolated",
+  "IsolatedNamespace": "pproj.Vote.Isolated",
+  "IsVisible": false,
+  "PublicFunctions": [
+    {
+      "Name": "GetPoll",
+      "Parameters": [
+        {
+          "Name": "pollId",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        }
+      ],
+      "ReturnType": "global::pproj.Vote.Structures.Module.IPollDto",
+      "ReturnTypeFullName": "pproj.Vote.Structures.Module.IPollDto",
+      "WebApiRequestType": "Get"
+    },
+    {
+      "Name": "PollCreate",
+      "Parameters": [
+        {
+          "Name": "pollDto",
+          "ParameterType": "global::pproj.Vote.Structures.Module.IPollCreateDto",
+          "ParameterTypeFullName": "pproj.Vote.Structures.Module.IPollCreateDto"
+        }
+      ],
+      "ReturnType": "global::System.Int64",
+      "ReturnTypeFullName": "System.Int64",
+      "WebApiRequestType": "Post"
+    }
+  ],
+  "PublicStructures": [
+    {
+      "Name": "PollCreateDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Subject",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Description",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "IsMultipleChoice",
+          "TypeFullName": "global::System.Boolean"
+        },
+        {
+          "Name": "Options",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::System.String>"
+        }
+      ],
+      "StructureNamespace": "pproj.Vote.Structures.Module"
+    },
+    {
+      "Name": "PollDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "Subject",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Description",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "IsMultipleChoice",
+          "TypeFullName": "global::System.Boolean"
+        },
+        {
+          "Name": "StatusVote",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Options",
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::pproj.Vote.Structures.Module.IPollOptionDto>"
+        },
+        {
+          "Name": "MyVoteOptionId",
+          "IsNullable": true,
+          "TypeFullName": "global::System.Nullable<global::System.Int64>"
+        }
+      ],
+      "StructureNamespace": "pproj.Vote.Structures.Module"
+    },
+    {
+      "Name": "PollOptionDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "Text",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "VotesCount",
+          "IsNullable": true,
+          "TypeFullName": "global::System.Nullable<global::System.Int32>"
+        }
+      ],
+      "StructureNamespace": "pproj.Vote.Structures.Module"
+    }
+  ],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "pproj.Vote",
+  "ServerAssemblyName": "pproj.Vote.Server",
+  "ServerNamespace": "pproj.Vote.Server",
+  "SharedAssemblyName": "pproj.Vote.Shared",
+  "SharedNamespace": "pproj.Vote.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 11
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}
