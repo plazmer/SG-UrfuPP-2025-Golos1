@@ -137,8 +137,9 @@
         },
         {
           "Name": "Options",
+          "IsList": true,
           "IsNullable": true,
-          "TypeFullName": "global::System.Collections.Generic.List<global::pproj.Vote.Structures.Module.IPollOptionDto>"
+          "TypeFullName": "global::System.Collections.Generic.List<global::IPollOptionDto>"
         },
         {
           "Name": "MyVoteOptionId",
