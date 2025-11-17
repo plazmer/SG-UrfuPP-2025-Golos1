@@ -68,7 +68,7 @@ namespace pproj.Vote.Structures.Module
     /// <summary>
     /// Варианты опроса
     /// </summary>
-    public List<IPollOptionDto> Options { get; set; }
+    public List<pproj.Vote.Structures.Module.IPollOptionDto> Options { get; set; }
     
     /// <summary>
     /// Выбранные варианты для пользователя

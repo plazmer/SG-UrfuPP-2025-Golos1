@@ -36,7 +36,7 @@ namespace pproj.Vote.Server
         .ToList();
     
       var myVote = PollVotes
-        .GetAll(v => Equals(v.Poll, poll) && Equals(v.Employee, employee))
+        .GetAll(v => v.Id == pollId && Equals(v.Employee, employee))
         .FirstOrDefault();
     
       var pollDto = Structures.Module.PollDto.Create();
@@ -72,6 +72,7 @@ namespace pproj.Vote.Server
       poll.Subject = pollDto.Subject;
       poll.Description = pollDto.Description;
       poll.IsMultipleChoice = pollDto.IsMultipleChoice;
+      poll.StatusVote = pproj.Vote.Poll.StatusVote.Active;
       poll.Save();
 
       var order = 1;
@@ -85,6 +86,50 @@ namespace pproj.Vote.Server
       }
 
       return poll.Id;
+    }
+    
+    /// <summary>
+    /// Проголосовать.
+    /// </summary>
+    /// <param name="pollId">Идентификатор опроса</param>
+    /// <param name="optionId">Идентификатор варианта</param>
+    [Public(WebApiRequestType = RequestType.Post)]
+    public virtual void SubmitVote(long pollId, long optionId)
+    {
+      var poll = Polls.GetAll(p => p.Id == pollId).FirstOrDefault();
+      if (poll == null)
+        throw new ArgumentException($"Poll {pollId} not found.");
+    
+      if (poll.StatusVote != pproj.Vote.Poll.StatusVote.Active)
+        throw new InvalidOperationException("Voting is allowed only for active polls.");
+    
+      var employee = Sungero.Company.Employees.Current;
+      if (employee == null)
+        throw new InvalidOperationException("No current employee.");
+    
+      
+      var options = PollOptions.GetAll();
+      
+      var option = PollOptions
+        .GetAll(o => o.Poll.Id == pollId && o.Id == optionId)
+        .FirstOrDefault();
+    
+      if (option == null)
+        throw new ArgumentException($"Option {optionId} not found in poll {pollId}.");
+    
+      if (!poll.IsMultipleChoice.GetValueOrDefault())
+      {
+        var oldVotes = PollVotes
+          .GetAll(v => Equals(v.Poll, poll) && Equals(v.Employee, employee))
+          .ToList();
+      }
+    
+      var newVote = PollVotes.Create();
+      newVote.Poll = poll;
+      newVote.Option = option;
+      newVote.Employee = employee;
+      newVote.VoteDate = Calendar.Now;
+      newVote.Save();
     }
   }
 }

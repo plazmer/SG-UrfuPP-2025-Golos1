@@ -78,6 +78,24 @@
       "ReturnType": "global::System.Int64",
       "ReturnTypeFullName": "System.Int64",
       "WebApiRequestType": "Post"
+    },
+    {
+      "Name": "SubmitVote",
+      "Parameters": [
+        {
+          "Name": "pollId",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        },
+        {
+          "Name": "optionId",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void",
+      "WebApiRequestType": "Post"
     }
   ],
   "PublicStructures": [
@@ -139,7 +157,7 @@
           "Name": "Options",
           "IsList": true,
           "IsNullable": true,
-          "TypeFullName": "global::System.Collections.Generic.List<global::IPollOptionDto>"
+          "TypeFullName": "global::System.Collections.Generic.List<global::pproj.Vote.Structures.Module.IPollOptionDto>"
         },
         {
           "Name": "MyVoteOptionId",
