@@ -83,6 +83,22 @@
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
       "PreviousPropertyGuid": "d35fdbb2-4955-4317-bef3-c8a44fdaa6c0"
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "d46a4822-0a23-4137-b51f-ab5458665cfb",
+      "Name": "ScaleAnswer",
+      "Code": "ScaleAnswer",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "15436394-3ce5-44df-aa5d-9266f96a078f"
+    },
+    {
+      "$type": "Sungero.Metadata.TextPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "fac40a7b-3c84-4c97-a891-11234d9eaba1",
+      "Name": "DetailedAnswer",
+      "Code": "DetailedAnswer",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToTextBinder",
+      "PreviousPropertyGuid": "d46a4822-0a23-4137-b51f-ab5458665cfb"
     }
   ],
   "PublicStructures": [],

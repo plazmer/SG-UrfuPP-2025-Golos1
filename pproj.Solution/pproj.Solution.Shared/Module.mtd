@@ -36,119 +36,119 @@
   "PublicStructures": [],
   "RemoteComponents": [
     {
-      "NameGuid": "aa179c0e-74d8-4692-88a4-5b6396bac3b4",
-      "Name": "VoteComponentBuild",
+      "NameGuid": "b54872de-da80-44db-af52-614455b8a4a5",
+      "Name": "VoteFrontend",
       "ComponentVersion": "1.0",
       "Controls": [
         {
-          "NameGuid": "35678a40-56e0-4930-969a-ac62a6eb3043",
-          "Name": "StringControl",
-          "DisplayNames": [
-            {
-              "NameGuid": "1363d9a7-3ecb-44cc-839a-9682474ef9d8",
-              "DisplayName": "String property editor",
-              "Locale": "en"
-            },
-            {
-              "NameGuid": "26b1a7ab-74a4-4f1d-9bcd-3b7152290591",
-              "DisplayName": "Редактор строкового свойства",
-              "Locale": "ru"
-            }
-          ],
-          "Loaders": [
-            {
-              "NameGuid": "fe1bf1af-a90b-4cee-95a9-da27a63cc7b8",
-              "Name": "string-control-card-loader"
-            }
-          ]
-        },
-        {
-          "NameGuid": "5ccdbbe7-bf63-4516-b242-6af720a68161",
-          "Name": "PerformedWorkDetailsGrid",
-          "DisplayNames": [
-            {
-              "NameGuid": "5fc00603-b3fa-4279-9207-d61c1070daf5",
-              "DisplayName": "Список выполненных работ",
-              "Locale": "ru"
-            },
-            {
-              "NameGuid": "96ed7bc6-c7b7-46b8-86c9-9c4b74ae30f7",
-              "DisplayName": "Performed work details",
-              "Locale": "en"
-            }
-          ],
-          "Loaders": [
-            {
-              "NameGuid": "70896b4f-4881-4dee-915c-ac3e7e7fb582",
-              "Name": "performed-work-details-grid-card-loader"
-            }
-          ]
-        },
-        {
-          "NameGuid": "63d0f705-a200-42b8-8fe8-22e92abd3d29",
-          "Name": "ActionsPanel",
-          "DisplayNames": [
-            {
-              "NameGuid": "d50a9e1b-0f16-4363-ae0d-473d92dc236c",
-              "DisplayName": "Панель действий",
-              "Locale": "ru"
-            },
-            {
-              "NameGuid": "daa9ef7f-08ec-4d17-b344-81812e21243a",
-              "DisplayName": "Actions panel",
-              "Locale": "en"
-            }
-          ],
-          "Loaders": [
-            {
-              "NameGuid": "06772b62-0999-4fdf-91a3-b95416d1066d",
-              "Name": "actions-panel-cover-loader",
-              "Scope": "Cover"
-            }
-          ]
-        },
-        {
-          "NameGuid": "89cd22a6-0235-4ff2-a96f-8fde8534b1da",
-          "Name": "Gantt",
-          "DisplayNames": [
-            {
-              "NameGuid": "bbe01662-39db-4161-ae5f-67c141a6710e",
-              "DisplayName": "Gantt diagram",
-              "Locale": "en"
-            },
-            {
-              "NameGuid": "cfed981a-9ed4-4b8d-affc-dee594e15ff6",
-              "DisplayName": "Диаграмма Ганта",
-              "Locale": "ru"
-            }
-          ],
-          "Loaders": [
-            {
-              "NameGuid": "4fbb09e3-7b34-41ec-87b0-a523c8e2d8ae",
-              "Name": "gantt-cover-loader",
-              "Scope": "Cover"
-            }
-          ]
-        },
-        {
-          "NameGuid": "be5be8e8-88d8-447b-ac63-36f9899ca3de",
+          "NameGuid": "0fe82587-d5f7-4da2-93a8-b24d886e5dc9",
           "Name": "Question",
           "DisplayNames": [
             {
-              "NameGuid": "5b1d216b-6c3a-4711-b5c2-23b52ec9da58",
+              "NameGuid": "768a039c-bd34-4209-8d82-563778e72c6f",
               "DisplayName": "Вопрос",
               "Locale": "ru"
             },
             {
-              "NameGuid": "9c8156fc-f77b-4240-8182-63fe7bcdfaaf",
+              "NameGuid": "c7b24a36-8c02-4b81-8050-b6d02d50d350",
               "DisplayName": "Question",
               "Locale": "en"
             }
           ],
           "Loaders": [
             {
-              "NameGuid": "825dd2b2-6b88-4b2d-8040-5efa74c9a45a",
+              "NameGuid": "c7783f3e-9fa4-40ad-9588-ee43fc523aa4",
               "Name": "question-card-loader"
+            }
+          ]
+        },
+        {
+          "NameGuid": "20c52974-fc23-474b-9233-3645c7f2ba3d",
+          "Name": "Gantt",
+          "DisplayNames": [
+            {
+              "NameGuid": "1f4243b0-126f-4f74-8076-9eef1686ae6a",
+              "DisplayName": "Gantt diagram",
+              "Locale": "en"
+            },
+            {
+              "NameGuid": "774e170f-cbbe-4b60-a0b5-bc89113cba17",
+              "DisplayName": "Диаграмма Ганта",
+              "Locale": "ru"
+            }
+          ],
+          "Loaders": [
+            {
+              "NameGuid": "b96a4803-437a-4350-93a3-251aff199415",
+              "Name": "gantt-cover-loader",
+              "Scope": "Cover"
+            }
+          ]
+        },
+        {
+          "NameGuid": "6081b2a0-ccf8-4491-a2f4-49bce7c9e595",
+          "Name": "ActionsPanel",
+          "DisplayNames": [
+            {
+              "NameGuid": "4a127312-669a-45f4-a5d8-913b6fd864c1",
+              "DisplayName": "Actions panel",
+              "Locale": "en"
+            },
+            {
+              "NameGuid": "f6e27c28-caba-4d16-8245-cee3e2683917",
+              "DisplayName": "Панель действий",
+              "Locale": "ru"
+            }
+          ],
+          "Loaders": [
+            {
+              "NameGuid": "3627cce8-7ee8-435b-a892-5b96e30d0aca",
+              "Name": "actions-panel-cover-loader",
+              "Scope": "Cover"
+            }
+          ]
+        },
+        {
+          "NameGuid": "796db97a-784c-450a-9474-96b8a8e1106b",
+          "Name": "StringControl",
+          "DisplayNames": [
+            {
+              "NameGuid": "21d79063-84c4-475c-a59a-7a04958ac1ca",
+              "DisplayName": "String property editor",
+              "Locale": "en"
+            },
+            {
+              "NameGuid": "b326987a-9ad0-4b85-9d08-3f784cdc29c0",
+              "DisplayName": "Редактор строкового свойства",
+              "Locale": "ru"
+            }
+          ],
+          "Loaders": [
+            {
+              "NameGuid": "7d12548b-71d3-4058-aa81-204d943f3144",
+              "Name": "string-control-card-loader"
+            }
+          ]
+        },
+        {
+          "NameGuid": "9590226e-216d-4abd-bb68-938fcaaae3c0",
+          "Name": "PerformedWorkDetailsGrid",
+          "DisplayNames": [
+            {
+              "NameGuid": "548a6804-dd78-4fe0-838c-367c5fe7fbf2",
+              "DisplayName": "Performed work details",
+              "Locale": "en"
+            },
+            {
+              "NameGuid": "d9b90fb2-d4ab-4d9d-b960-3285e9e68254",
+              "DisplayName": "Список выполненных работ",
+              "Locale": "ru"
+            }
+          ],
+          "Loaders": [
+            {
+              "NameGuid": "decdf80e-cc34-4dd8-aaac-496dfac6463c",
+              "Name": "performed-work-details-grid-card-loader"
             }
           ]
         }

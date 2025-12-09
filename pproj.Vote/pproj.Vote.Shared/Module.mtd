@@ -46,8 +46,12 @@
       "PreviousItemId": "ca630781-b9e9-4c51-bddd-37cf589e822a"
     },
     {
-      "ItemId": "8fbd0e12-856c-4f25-9168-6aa93b621278",
+      "ItemId": "5939a5a5-8a96-4916-8d10-8c80acfaa8f9",
       "PreviousItemId": "a5f5f12a-510d-4d85-b4c1-e040a2434e5d"
+    },
+    {
+      "ItemId": "577c069d-e48a-44f7-8f94-cc981ba4e2ae",
+      "PreviousItemId": "5939a5a5-8a96-4916-8d10-8c80acfaa8f9"
     }
   ],
   "Importance": "Medium",
@@ -58,7 +62,7 @@
   "IsVisible": false,
   "PublicFunctions": [
     {
-      "Name": "GetPoll",
+      "Name": "GetPollStatistic",
       "Parameters": [
         {
           "Name": "pollId",
@@ -66,39 +70,34 @@
           "ParameterTypeFullName": "System.Int64"
         }
       ],
-      "ReturnType": "global::pproj.Vote.Structures.Module.IPollDto",
-      "ReturnTypeFullName": "pproj.Vote.Structures.Module.IPollDto",
+      "ReturnType": "global::pproj.Vote.Structures.Module.IPollStatisticDto",
+      "ReturnTypeFullName": "pproj.Vote.Structures.Module.IPollStatisticDto",
       "WebApiRequestType": "Get"
     },
     {
-      "Name": "PollCreate",
+      "Name": "GetSurvey",
       "Parameters": [
         {
-          "Name": "pollDto",
-          "ParameterType": "global::pproj.Vote.Structures.Module.IPollCreateDto",
-          "ParameterTypeFullName": "pproj.Vote.Structures.Module.IPollCreateDto"
+          "Name": "surveyId",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        }
+      ],
+      "ReturnType": "global::pproj.Vote.Structures.Module.ISurveyGetDto",
+      "ReturnTypeFullName": "pproj.Vote.Structures.Module.ISurveyGetDto",
+      "WebApiRequestType": "Get"
+    },
+    {
+      "Name": "SurveyCreate",
+      "Parameters": [
+        {
+          "Name": "surveyDto",
+          "ParameterType": "global::pproj.Vote.Structures.Module.ISurveyCreateDto",
+          "ParameterTypeFullName": "pproj.Vote.Structures.Module.ISurveyCreateDto"
         }
       ],
       "ReturnType": "global::System.Int64",
       "ReturnTypeFullName": "System.Int64",
-      "WebApiRequestType": "Post"
-    },
-    {
-      "Name": "SubmitVote",
-      "Parameters": [
-        {
-          "Name": "pollId",
-          "ParameterType": "global::System.Int64",
-          "ParameterTypeFullName": "System.Int64"
-        },
-        {
-          "Name": "optionId",
-          "ParameterType": "global::System.Int64",
-          "ParameterTypeFullName": "System.Int64"
-        }
-      ],
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void",
       "WebApiRequestType": "Post"
     }
   ],
@@ -108,12 +107,7 @@
       "IsPublic": true,
       "Properties": [
         {
-          "Name": "Subject",
-          "IsNullable": true,
-          "TypeFullName": "global::System.String"
-        },
-        {
-          "Name": "Description",
+          "Name": "QuestionText",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
         },
@@ -125,26 +119,17 @@
           "Name": "Options",
           "IsList": true,
           "IsNullable": true,
-          "TypeFullName": "global::System.Collections.Generic.List<global::System.String>"
+          "TypeFullName": "global::System.Collections.Generic.List<global::pproj.Vote.Structures.Module.IPollOptionCreateDto>"
         }
       ],
       "StructureNamespace": "pproj.Vote.Structures.Module"
     },
     {
-      "Name": "PollDto",
+      "Name": "PollGetDto",
       "IsPublic": true,
       "Properties": [
         {
-          "Name": "Id",
-          "TypeFullName": "global::System.Int64"
-        },
-        {
-          "Name": "Subject",
-          "IsNullable": true,
-          "TypeFullName": "global::System.String"
-        },
-        {
-          "Name": "Description",
+          "Name": "QuestionText",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
         },
@@ -153,26 +138,84 @@
           "TypeFullName": "global::System.Boolean"
         },
         {
-          "Name": "StatusVote",
-          "IsNullable": true,
-          "TypeFullName": "global::System.String"
-        },
-        {
           "Name": "Options",
           "IsList": true,
           "IsNullable": true,
-          "TypeFullName": "global::System.Collections.Generic.List<global::pproj.Vote.Structures.Module.IPollOptionDto>"
-        },
-        {
-          "Name": "MyVoteOptionId",
-          "IsNullable": true,
-          "TypeFullName": "global::System.Nullable<global::System.Int64>"
+          "TypeFullName": "global::System.Collections.Generic.List<global::pproj.Vote.Structures.Module.IPollOptionGetDto>"
         }
       ],
       "StructureNamespace": "pproj.Vote.Structures.Module"
     },
     {
-      "Name": "PollOptionDto",
+      "Name": "PollOptionCreateDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Text",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Type",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "ScaleMinText",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ScaleMaxText",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ScaleMin",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "ScaleMax",
+          "TypeFullName": "global::System.Int32"
+        }
+      ],
+      "StructureNamespace": "pproj.Vote.Structures.Module"
+    },
+    {
+      "Name": "PollOptionGetDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Text",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Type",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "ScaleMinText",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ScaleMaxText",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ScaleMin",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "ScaleMax",
+          "TypeFullName": "global::System.Int32"
+        }
+      ],
+      "StructureNamespace": "pproj.Vote.Structures.Module"
+    },
+    {
+      "Name": "PollOptionStatisticDto",
       "IsPublic": true,
       "Properties": [
         {
@@ -188,6 +231,91 @@
           "Name": "VotesCount",
           "IsNullable": true,
           "TypeFullName": "global::System.Nullable<global::System.Int32>"
+        },
+        {
+          "Name": "EmployeesIds",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::System.Int64>"
+        }
+      ],
+      "StructureNamespace": "pproj.Vote.Structures.Module"
+    },
+    {
+      "Name": "PollStatisticDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "PollVoteId",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "VotedCount",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "Options",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::pproj.Vote.Structures.Module.IPollOptionStatisticDto>"
+        }
+      ],
+      "StructureNamespace": "pproj.Vote.Structures.Module"
+    },
+    {
+      "Name": "SurveyCreateDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "SurveyName",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Description",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "IsAnonymous",
+          "TypeFullName": "global::System.Boolean"
+        },
+        {
+          "Name": "IsMix",
+          "TypeFullName": "global::System.Boolean"
+        },
+        {
+          "Name": "IsShowProgress",
+          "TypeFullName": "global::System.Boolean"
+        },
+        {
+          "Name": "PollCreateDto",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::pproj.Vote.Structures.Module.IPollCreateDto>"
+        }
+      ],
+      "StructureNamespace": "pproj.Vote.Structures.Module"
+    },
+    {
+      "Name": "SurveyGetDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "SurveyName",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Description",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PollGetDto",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::pproj.Vote.Structures.Module.IPollGetDto>"
         }
       ],
       "StructureNamespace": "pproj.Vote.Structures.Module"

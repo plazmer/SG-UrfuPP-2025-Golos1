@@ -1,6 +1,6 @@
 {
   "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
-  "NameGuid": "b066f516-d1c8-440b-a135-3282171a7eb5",
+  "NameGuid": "eb205531-fa67-4999-8322-aba234bc5513",
   "Name": "VoteTaskObservers",
   "BaseGuid": "ac08b548-e666-4d9b-816f-a6c5e08e360f",
   "CanBeNavigationPropertyType": true,
@@ -23,7 +23,7 @@
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "f2124770-2128-42c4-8dba-baba806c77e6",
       "Name": "Task",
-      "EntityGuid": "8fbd0e12-856c-4f25-9168-6aa93b621278",
+      "EntityGuid": "577c069d-e48a-44f7-8f94-cc981ba4e2ae",
       "IsAncestorMetadata": true,
       "IsReferenceToRootEntity": true,
       "Overridden": [

@@ -58,43 +58,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_Poll" xml:space="preserve">
-    <value>Опрос</value>
+  <data name="Property_Description" xml:space="preserve">
+    <value>Описание опроса</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Вариант ответа</value>
+    <value>Опрос</value>
   </data>
   <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Вариант ответа</value>
+    <value>Опрос</value>
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Варианты ответа</value>
+    <value>Опросы</value>
   </data>
-  <data name="Property_Text" xml:space="preserve">
-    <value>Текст варианта ответа</value>
+  <data name="Property_SurveyName" xml:space="preserve">
+    <value>Название опроса</value>
   </data>
-  <data name="Property_PollOptionType" xml:space="preserve">
-    <value>Тип варианта ответа</value>
+  <data name="Property_IsAnonymous" xml:space="preserve">
+    <value>Анонимный опрос</value>
   </data>
-  <data name="Enum_PollOptionType_Scale" xml:space="preserve">
-    <value>Шкала</value>
+  <data name="Property_IsMix" xml:space="preserve">
+    <value>Перемешивать вопросы</value>
   </data>
-  <data name="Enum_PollOptionType_Detailed" xml:space="preserve">
-    <value>Развернутый ответ</value>
+  <data name="Property_IsShowProgress" xml:space="preserve">
+    <value>Показывать прогресс</value>
   </data>
-  <data name="Enum_PollOptionType_Standard" xml:space="preserve">
-    <value>Обычный вариант ответа</value>
-  </data>
-  <data name="Property_ScaleMin" xml:space="preserve">
-    <value>Шкала - минимальное значение</value>
-  </data>
-  <data name="Property_ScaleMax" xml:space="preserve">
-    <value>Шкала - максимальное значение</value>
-  </data>
-  <data name="Property_ScaleMinText" xml:space="preserve">
-    <value>Шкала - мин. описание</value>
-  </data>
-  <data name="Property_ScaleMaxText" xml:space="preserve">
-    <value>Шкала - макс. описание</value>
+  <data name="Property_Author" xml:space="preserve">
+    <value>Автор</value>
   </data>
 </root>

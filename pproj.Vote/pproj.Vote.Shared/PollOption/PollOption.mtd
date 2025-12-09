@@ -53,18 +53,66 @@
       "Code": "Text",
       "IsDisplayValue": true,
       "IsQuickSearchAllowed": true,
-      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "6f28b73b-9774-424a-90af-65b2621bf459"
     },
     {
-      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "4724cbaf-0a35-42b0-ae16-55154af4cbf8",
-      "Name": "Order",
-      "Code": "Order",
-      "IsEnabled": false,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "f2af5ca1-ea8c-4a29-a8e8-ba6f6d2f9d6e",
+      "Name": "PollOptionType",
+      "Code": "PollOptionType",
+      "DirectValues": [
+        {
+          "NameGuid": "7afda88f-60f4-4f92-ab7e-880fcc298379",
+          "Name": "Scale",
+          "Code": "Scale"
+        },
+        {
+          "NameGuid": "ac7f0afa-b372-4865-81d9-88b38dba824b",
+          "Name": "Standard",
+          "Code": "Standard"
+        },
+        {
+          "NameGuid": "261864d3-08aa-4f34-ab53-48eb4d3534de",
+          "Name": "Detailed",
+          "Code": "Detailed"
+        }
+      ],
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "a2b81c3a-ea0b-41a2-824f-a4df8a5c7312"
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "02f00266-4026-4caf-82b2-a96bdd66126d",
+      "Name": "ScaleMin",
+      "Code": "ScaleMin",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "f2af5ca1-ea8c-4a29-a8e8-ba6f6d2f9d6e"
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "511a3f66-a781-4d5f-a634-019e971cfb3c",
+      "Name": "ScaleMax",
+      "Code": "ScaleMax",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "02f00266-4026-4caf-82b2-a96bdd66126d"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "bc633129-9dc6-429c-82af-420c98755214",
+      "Name": "ScaleMinText",
+      "Code": "ScaleMinText",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "511a3f66-a781-4d5f-a634-019e971cfb3c"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a4184b9c-a5b4-47e3-aad4-41a37d0f3c52",
+      "Name": "ScaleMaxText",
+      "Code": "ScaleMaxText",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "bc633129-9dc6-429c-82af-420c98755214"
     }
   ],
   "PublicStructures": [],

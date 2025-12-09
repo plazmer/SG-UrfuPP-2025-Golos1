@@ -39,39 +39,13 @@
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "d001bd51-b434-4efd-92f1-ff9a9cc022f8",
-      "Name": "Subject",
-      "Code": "Subject",
+      "Name": "QuestionText",
+      "Code": "QuestionText",
       "IsDisplayValue": true,
       "IsQuickSearchAllowed": true,
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "1dcedc29-5140-4770-ac92-eabc212326a1"
-    },
-    {
-      "$type": "Sungero.Metadata.TextPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "428b299c-421d-4de5-b7a4-7c07b1d79c36",
-      "Name": "Description",
-      "Code": "Description",
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToTextBinder",
-      "PreviousPropertyGuid": "d001bd51-b434-4efd-92f1-ff9a9cc022f8"
-    },
-    {
-      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
-      "NameGuid": "dac35ade-9f80-4856-a5ed-853ac4afe7e1",
-      "Name": "StartDate",
-      "Code": "StartDate",
-      "DateTimeFormat": "DateTime",
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
-      "PreviousPropertyGuid": "428b299c-421d-4de5-b7a4-7c07b1d79c36"
-    },
-    {
-      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
-      "NameGuid": "6272fde8-a13b-465c-b496-097b3764bafa",
-      "Name": "EndDate",
-      "Code": "EndDate",
-      "DateTimeFormat": "DateTime",
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
-      "PreviousPropertyGuid": "dac35ade-9f80-4856-a5ed-853ac4afe7e1"
     },
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
@@ -80,31 +54,15 @@
       "Code": "IsMultipleChoi",
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-      "PreviousPropertyGuid": "6272fde8-a13b-465c-b496-097b3764bafa"
+      "PreviousPropertyGuid": "d001bd51-b434-4efd-92f1-ff9a9cc022f8"
     },
     {
-      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "ac425028-ad3a-4c3c-8288-ba5b5bb5615f",
-      "Name": "StatusVote",
-      "Code": "StatusVote",
-      "DirectValues": [
-        {
-          "NameGuid": "e5b224a8-dc6f-4fed-a1b3-5b1daa21dc99",
-          "Name": "Draft",
-          "Code": "Draft"
-        },
-        {
-          "NameGuid": "2b5cb25d-25d1-4c30-b77b-6db2d1185f25",
-          "Name": "Active",
-          "Code": "Active"
-        },
-        {
-          "NameGuid": "bc338ae9-de04-473e-a206-b34fe69b45b4",
-          "Name": "Closed",
-          "Code": "Closed"
-        }
-      ],
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "1781c895-bd06-4364-85a4-a2897327ba64",
+      "Name": "Survey",
+      "Code": "Survey",
+      "EntityGuid": "5939a5a5-8a96-4916-8d10-8c80acfaa8f9",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "de3bfe42-4448-4e5c-9a22-ff6e18e30568"
     }
   ],

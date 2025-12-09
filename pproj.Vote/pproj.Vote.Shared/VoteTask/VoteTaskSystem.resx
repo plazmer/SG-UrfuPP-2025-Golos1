@@ -58,10 +58,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Form_1534433539f1403f8dd69868732d1e48" xml:space="preserve">
-    <value>Vote</value>
+  <data name="Form_a041028ede9a4b56827fe6190617b70e" xml:space="preserve">
+    <value>Page</value>
   </data>
-  <data name="ControlGroup_2985dbb64f24408ca88606ba1a202729" xml:space="preserve">
+  <data name="ControlGroup_77f2c63e624b4227a9da8f675b9c3c09" xml:space="preserve">
     <value />
   </data>
   <data name="DisplayName" xml:space="preserve">

@@ -8,79 +8,32 @@ namespace pproj.Vote.Structures.Module
 {
 
   /// <summary>
-  /// Дто-модель для создания опроса
+  /// Дто-модель для получения статистики голосов
   /// </summary>
   [Public]
-  partial class PollCreateDto
-  {
-    /// <summary>
-    /// Тема опроса
-    /// </summary>
-    public string Subject { get; set; }
-
-    /// <summary>
-    /// Описание / вопрос
-    /// </summary>
-    public string Description { get; set; }
-
-    /// <summary>
-    /// Разрешён ли выбор нескольких вариантов
-    /// </summary>
-    public bool IsMultipleChoice { get; set; }
-
-    /// <summary>
-    /// Тексты вариантов ответа
-    /// </summary>
-    public List<string> Options { get; set; }
-  }
-  
-  /// <summary>
-  /// Дто-модель опроса
-  /// </summary>
-  [Public]
-  partial class PollDto
+  partial class PollStatisticDto
   {
     /// <summary>
     /// Идентификатор опроса
     /// </summary>
-    public long Id { get; set; }
+    public long PollVoteId {get;set;}
     
     /// <summary>
-    /// Заголовок опроса
+    /// Кол-во проголосовавших в опросе
     /// </summary>
-    public string Subject { get; set; }
+    public int VotedCount {get;set;}
     
     /// <summary>
-    /// Описаниме опроса
+    /// Варианты ответа опроса с результатами
     /// </summary>
-    public string Description { get; set; }
-    
-    /// <summary>
-    /// Один/Несколько вариантов ответа
-    /// </summary>
-    public bool IsMultipleChoice { get; set; }
-    
-    /// <summary>
-    /// Статус опроса
-    /// </summary>
-    public string StatusVote { get; set; } // Draft / Active / Closed
-    
-    /// <summary>
-    /// Варианты опроса
-    /// </summary>
-    public List<pproj.Vote.Structures.Module.IPollOptionDto> Options { get; set; }
-    
-    /// <summary>
-    /// Выбранные варианты для пользователя
-    /// </summary>
-    public long? MyVoteOptionId { get; set; } //TODO List<long>
+    public List<pproj.Vote.Structures.Module.IPollOptionStatisticDto> Options { get; set; }
   }
-
+  
   /// <summary>
-  /// Дто-модель варианта ответа
+  /// Дто-модель статистики варианта ответа
   /// </summary>
   [Public]
-  partial class PollOptionDto
+  partial class PollOptionStatisticDto
   {
     /// <summary>
     /// Идентификатор варинта ответа
@@ -96,5 +49,195 @@ namespace pproj.Vote.Structures.Module
     /// Количество голосов
     /// </summary>
     public int? VotesCount { get; set; }
+    
+    /// <summary>
+    /// Список проголосовавших за этот вариант ответа
+    /// </summary>
+    public List<long> EmployeesIds {get;set;}
+  }
+  
+  
+  // Создание опроса
+  
+  
+  /// <summary>
+  /// Дто-модель создания опроса/настройка
+  /// </summary>
+  [Public]
+  partial class SurveyCreateDto
+  {
+    /// <summary>
+    /// Название опроса
+    /// </summary>
+    public string SurveyName { get; set; }
+    
+    /// <summary>
+    /// Описание опроса
+    /// </summary>
+    public string Description { get; set;}
+    
+    /// <summary>
+    /// Анонимный опрос
+    /// </summary>
+    public bool IsAnonymous { get; set; }
+    
+    /// <summary>
+    /// Перемешать вопросы
+    /// </summary>
+    public bool IsMix { get; set; }
+    
+    /// <summary>
+    /// Показывать прогресс
+    /// </summary>
+    public bool IsShowProgress { get; set; }
+    
+    /// <summary>
+    /// Вопрос
+    /// </summary>
+    public List<pproj.Vote.Structures.Module.IPollCreateDto> PollCreateDto { get; set; }
+  }
+  
+    /// <summary>
+  /// Дто-модель для создания опроса
+  /// </summary>
+  [Public]
+  partial class PollCreateDto
+  {
+    /// <summary>
+    /// Вопрос
+    /// </summary>
+    public string QuestionText { get; set; }
+    
+    /// <summary>
+    /// Разрешён ли выбор нескольких вариантов
+    /// </summary>
+    public bool IsMultipleChoice { get; set; }
+
+    /// <summary>
+    /// Тексты вариантов ответа
+    /// </summary>
+    public List<pproj.Vote.Structures.Module.IPollOptionCreateDto> Options { get; set; }
+  }
+  
+  /// <summary>
+  /// Дто-модель варианта опроса для создания опроса
+  /// </summary>
+  [Public]
+  partial class PollOptionCreateDto
+  {
+    /// <summary>
+    /// Текст варианта ответа
+    /// </summary>
+    public string Text { get; set; }
+    
+    /// <summary>
+    /// Тип варианта
+    /// </summary>
+    public int Type { get; set; }
+    
+    /// <summary>
+    /// Шкала мин. текст
+    /// </summary>
+    public string ScaleMinText { get; set; }
+    
+    /// <summary>
+    /// Шкала макс. текст
+    /// </summary>
+    public string ScaleMaxText { get; set; }
+    
+    /// <summary>
+    /// Минимальная шкала
+    /// </summary>
+    public int ScaleMin { get; set; }
+    
+    /// <summary>
+    /// Максимальная шкала
+    /// </summary>
+    public int ScaleMax { get; set; }
+  }
+  
+  
+  //Получить опрос
+  
+  
+  /// <summary>
+  /// Дто-модель получения опроса
+  /// </summary>
+  [Public]
+  partial class SurveyGetDto
+  {
+    /// <summary>
+    /// Название опроса
+    /// </summary>
+    public string SurveyName { get; set; }
+    
+    /// <summary>
+    /// Описание опроса
+    /// </summary>
+    public string Description { get; set;}
+    
+    /// <summary>
+    /// Вопрос
+    /// </summary>
+    public List<pproj.Vote.Structures.Module.IPollGetDto> PollGetDto { get; set; }
+  }
+  
+  /// <summary>
+  /// Дто-модель получение вопроса
+  /// </summary>
+  [Public]
+  partial class PollGetDto
+  {
+    /// <summary>
+    /// Вопрос
+    /// </summary>
+    public string QuestionText { get; set; }
+    
+    /// <summary>
+    /// Разрешён ли выбор нескольких вариантов
+    /// </summary>
+    public bool IsMultipleChoice { get; set; }
+
+    /// <summary>
+    /// Варианты ответов
+    /// </summary>
+    public List<pproj.Vote.Structures.Module.IPollOptionGetDto> Options { get; set; }
+  }
+  
+  /// <summary>
+  /// Дто-модель получение варианта ответа
+  /// </summary>
+  [Public]
+  partial class PollOptionGetDto
+  {
+    /// <summary>
+    /// Текст варианта ответа
+    /// </summary>
+    public string Text { get; set; }
+    
+    /// <summary>
+    /// Тип варианта
+    /// </summary>
+    public int Type { get; set; }
+    
+    /// <summary>
+    /// Шкала мин. текст
+    /// </summary>
+    public string ScaleMinText { get; set; }
+    
+    /// <summary>
+    /// Шкала макс. текст
+    /// </summary>
+    public string ScaleMaxText { get; set; }
+    
+    /// <summary>
+    /// Минимальная шкала
+    /// </summary>
+    public int ScaleMin { get; set; }
+    
+    /// <summary>
+    /// Максимальная шкала
+    /// </summary>
+    public int ScaleMax { get; set; }
   }
 }

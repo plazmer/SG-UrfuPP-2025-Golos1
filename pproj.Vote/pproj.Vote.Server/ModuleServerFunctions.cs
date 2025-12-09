@@ -9,127 +9,123 @@ namespace pproj.Vote.Server
   public partial class ModuleFunctions
   {
     /// <summary>
-    /// Интеграционная функция: получить опрос.
+    /// Получить статистику по опросу
     /// </summary>
-    /// <param name="pollId">ИД опроса.</param>
     [Public(WebApiRequestType = RequestType.Get)]
-    public virtual Structures.Module.IPollDto GetPoll(long pollId)
+    public virtual Structures.Module.IPollStatisticDto GetPollStatistic(long pollId)
     {
-      var poll = Polls.GetAll(p => p.Id == pollId).FirstOrDefault();
-      if (poll == null)
-        return null;
-    
-      if (poll.StatusVote == pproj.Vote.Poll.StatusVote.Draft)
-        return null;
-    
-      var employee = Sungero.Company.Employees.Current;
-    
-      var optionDtos = PollOptions
-        .GetAll(o => Equals(o.Poll, poll))
-        .OrderBy(o => o.Order)
-        .Select(o => (Structures.Module.IPollOptionDto)
-          Structures.Module.PollOptionDto.Create(
-            o.Id,
-            o.Text,
-            null
-          ))
-        .ToList();
-    
-      var myVote = PollVotes
-        .GetAll(v => v.Id == pollId && Equals(v.Employee, employee))
-        .FirstOrDefault();
-    
-      var pollDto = Structures.Module.PollDto.Create();
-      pollDto.Id = poll.Id;
-      pollDto.Subject = poll.Subject;
-      pollDto.Description = poll.Description;
-      pollDto.IsMultipleChoice = poll.IsMultipleChoice ?? false;
-      pollDto.StatusVote = poll.StatusVote.ToString();
-      pollDto.Options = optionDtos;
-      pollDto.MyVoteOptionId = myVote != null ? (long?)myVote.Option.Id : null;
-    
-      return pollDto;
+      var pollStatisticDto = Structures.Module.PollStatisticDto.Create();
+      
+      var voteCount = PollVotes.GetAll().Where(x => x.Poll.Id == pollId).Count();  
+      var voteOptions = new List<pproj.Vote.Structures.Module.IPollOptionStatisticDto>();
+      var votes = PollVotes.GetAll().Where(x => x.Poll.Id == pollId).GroupBy(x => x.Option.Id);
+      
+      foreach(var vote in votes)
+      {
+        var optionDto = Structures.Module.PollOptionStatisticDto.Create();
+        
+        optionDto.Id = vote.Key;
+        optionDto.Text = PollOptions.GetAll().Where(x => x.Id == vote.Key).FirstOrDefault().Text;
+        optionDto.VotesCount = vote.Count();
+        optionDto.EmployeesIds = vote.Select(x => x.Employee.Id).Distinct().ToList();
+        
+        voteOptions.Add(optionDto);
+      }
+      
+      pollStatisticDto.PollVoteId = pollId;
+      pollStatisticDto.VotedCount = voteCount;
+      pollStatisticDto.Options = voteOptions;
+      
+      return pollStatisticDto;
     }
     
     /// <summary>
-    /// Создать опрос.
+    /// Создать опрос
     /// </summary>
-    /// <param name="pollDto">Данные для создания опроса.</param>
-    /// <returns>Id созданного опроса.</returns>
     [Public(WebApiRequestType = RequestType.Post)]
-    public virtual long PollCreate(Structures.Module.IPollCreateDto pollDto)
+    public virtual long SurveyCreate (Structures.Module.ISurveyCreateDto surveyDto)
     {
-      if (pollDto == null)
-        throw new ArgumentNullException(nameof(pollDto));
-
-      if (string.IsNullOrWhiteSpace(pollDto.Subject))
-        throw new ArgumentException("Subject is required.", nameof(pollDto));
-
-      if (pollDto.Options == null || !pollDto.Options.Any())
-        throw new ArgumentException("At least one option is required.", nameof(pollDto));
-
-      var poll = Polls.Create();
-      poll.Subject = pollDto.Subject;
-      poll.Description = pollDto.Description;
-      poll.IsMultipleChoice = pollDto.IsMultipleChoice;
-      poll.StatusVote = pproj.Vote.Poll.StatusVote.Active;
-      poll.Save();
-
-      var order = 1;
-      foreach (var optionText in pollDto.Options.Where(t => !string.IsNullOrWhiteSpace(t)))
+      // Создание оболочки опроса с настройками 
+      var survey = Surveys.Create();
+      
+      survey.SurveyName = surveyDto.SurveyName;
+      survey.Description = surveyDto.Description;
+      survey.IsAnonymous = surveyDto.IsAnonymous;
+      survey.IsMix = surveyDto.IsMix;
+      survey.IsShowProgress = surveyDto.IsShowProgress;
+      survey.Author = Users.Current;
+      
+      survey.Save();
+      
+      // Создание вопроса - оболочки для вариантов ответа
+      foreach (var pollDto in surveyDto.PollCreateDto)
       {
-        var option = PollOptions.Create();
-        option.Poll = poll;
-        option.Text = optionText;
-        option.Save();
-        order++;
+        var poll = Polls.Create();
+        
+        poll.Survey = survey;
+        poll.QuestionText = pollDto.QuestionText;
+        poll.IsMultipleChoice = pollDto.IsMultipleChoice;
+        
+        poll.Save();
+        
+        // Создание варианта ответа
+        foreach (var optionDto in pollDto.Options)
+        {
+          var option = PollOptions.Create();
+          
+          option.Poll = poll;
+          option.Text = optionDto.Text;
+          
+          switch (optionDto.Type)
+            {
+              case 0:
+                option.PollOptionType = pproj.Vote.PollOption.PollOptionType.Standard;
+                break;
+              case 1:
+                option.PollOptionType = pproj.Vote.PollOption.PollOptionType.Scale;
+                break;
+              case 2:
+                option.PollOptionType = pproj.Vote.PollOption.PollOptionType.Detailed;
+                break;
+              default:
+                throw new InvalidOperationException($"Неизвестный тип варианта ответа: {optionDto.Type}");
+            }
+          
+          if (optionDto.Type > 0)
+          {
+            option.ScaleMin = optionDto.ScaleMin;
+            option.ScaleMax = optionDto.ScaleMax;
+            option.ScaleMinText = optionDto.ScaleMinText;
+            option.ScaleMaxText = optionDto.ScaleMaxText;
+          }
+          
+          option.Save();
+        }
       }
-
-      return poll.Id;
+      
+      return survey.Id;
     }
     
+    
     /// <summary>
-    /// Проголосовать.
+    /// Получить опрос
     /// </summary>
-    /// <param name="pollId">Идентификатор опроса</param>
-    /// <param name="optionId">Идентификатор варианта</param>
-    [Public(WebApiRequestType = RequestType.Post)]
-    public virtual void SubmitVote(long pollId, long optionId)
+    [Public(WebApiRequestType = RequestType.Get)]
+    public virtual Structures.Module.ISurveyGetDto GetSurvey (long surveyId)
     {
-      var poll = Polls.GetAll(p => p.Id == pollId).FirstOrDefault();
-      if (poll == null)
-        throw new ArgumentException($"Poll {pollId} not found.");
-    
-      if (poll.StatusVote != pproj.Vote.Poll.StatusVote.Active)
-        throw new InvalidOperationException("Voting is allowed only for active polls.");
-    
-      var employee = Sungero.Company.Employees.Current;
-      if (employee == null)
-        throw new InvalidOperationException("No current employee.");
-    
+      // Формирование модели опроса
+      var survey = Surveys.GetAll().FirstOrDefault(x => x.Id == surveyId);
       
-      var options = PollOptions.GetAll();
+      if (survey == null) throw new ArgumentException($"Survey not found id:{surveyId}");
       
-      var option = PollOptions
-        .GetAll(o => o.Poll.Id == pollId && o.Id == optionId)
-        .FirstOrDefault();
-    
-      if (option == null)
-        throw new ArgumentException($"Option {optionId} not found in poll {pollId}.");
-    
-      if (!poll.IsMultipleChoice.GetValueOrDefault())
-      {
-        var oldVotes = PollVotes
-          .GetAll(v => Equals(v.Poll, poll) && Equals(v.Employee, employee))
-          .ToList();
-      }
-    
-      var newVote = PollVotes.Create();
-      newVote.Poll = poll;
-      newVote.Option = option;
-      newVote.Employee = employee;
-      newVote.VoteDate = Calendar.Now;
-      newVote.Save();
+      var surveyGetDto = Structures.Module.SurveyGetDto.Create();
+      
+      surveyGetDto.SurveyName = survey.SurveyName;
+      surveyGetDto.Description = survey.Description;
+      
+      // Формирование модели вопросов
+      
+      return surveyGetDto;
     }
   }
 }

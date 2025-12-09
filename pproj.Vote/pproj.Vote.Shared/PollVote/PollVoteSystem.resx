@@ -79,4 +79,10 @@
   <data name="Property_VoteDate" xml:space="preserve">
     <value>Дата/время голосования</value>
   </data>
+  <data name="Property_ScaleAnswer" xml:space="preserve">
+    <value>Шкала ответ</value>
+  </data>
+  <data name="Property_DetailedAnswer" xml:space="preserve">
+    <value>Развернутый ответ</value>
+  </data>
 </root>

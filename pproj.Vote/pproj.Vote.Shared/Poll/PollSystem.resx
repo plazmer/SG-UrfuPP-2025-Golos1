@@ -58,40 +58,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_Subject" xml:space="preserve">
-    <value>Название опроса</value>
+  <data name="Property_QuestionText" xml:space="preserve">
+    <value>Вопрос</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Опрос</value>
+    <value>Вопрос</value>
   </data>
   <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Опрос</value>
+    <value>Вопрос</value>
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Опросы</value>
-  </data>
-  <data name="Property_Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="Property_StartDate" xml:space="preserve">
-    <value>Дата начала</value>
-  </data>
-  <data name="Property_EndDate" xml:space="preserve">
-    <value>Дата окончания</value>
+    <value>Вопросы</value>
   </data>
   <data name="Property_IsMultipleChoice" xml:space="preserve">
     <value>Мультивыбор</value>
   </data>
-  <data name="Property_StatusVote" xml:space="preserve">
-    <value>Статус голосования</value>
-  </data>
-  <data name="Enum_StatusVote_Draft" xml:space="preserve">
-    <value>Черновик</value>
-  </data>
-  <data name="Enum_StatusVote_Active" xml:space="preserve">
-    <value>Активен</value>
-  </data>
-  <data name="Enum_StatusVote_Closed" xml:space="preserve">
-    <value>Завершён</value>
+  <data name="Property_Survey" xml:space="preserve">
+    <value>Опрос</value>
   </data>
 </root>
