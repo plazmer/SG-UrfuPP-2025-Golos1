@@ -58,22 +58,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Form_a041028ede9a4b56827fe6190617b70e" xml:space="preserve">
-    <value>Page</value>
+  <data name="Enum_Result_Complete" xml:space="preserve">
+    <value>Complete</value>
   </data>
-  <data name="ControlGroup_77f2c63e624b4227a9da8f675b9c3c09" xml:space="preserve">
-    <value />
+  <data name="Action_Complete" xml:space="preserve">
+    <value>Complete</value>
   </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Задача-Опрос</value>
+  <data name="Action_CompleteHint" xml:space="preserve">
+    <value>Complete with Result "Complete"</value>
   </data>
-  <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Задача-Опрос</value>
+  <data name="Action_CompleteConfirmationMessage" xml:space="preserve">
+    <value>Complete the assignment with result "Complete"?</value>
   </data>
-  <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Задача-Опрос</value>
-  </data>
-  <data name="Property_Survey" xml:space="preserve">
-    <value>Опрос</value>
+  <data name="Action_CompleteDescription" xml:space="preserve">
+    <value>Complete the assignment with result "Complete"</value>
   </data>
 </root>

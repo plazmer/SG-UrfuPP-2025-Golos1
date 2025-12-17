@@ -52,6 +52,10 @@
     {
       "ItemId": "577c069d-e48a-44f7-8f94-cc981ba4e2ae",
       "PreviousItemId": "5939a5a5-8a96-4916-8d10-8c80acfaa8f9"
+    },
+    {
+      "ItemId": "1b449f6c-9e52-47ef-9720-905c4375e914",
+      "PreviousItemId": "577c069d-e48a-44f7-8f94-cc981ba4e2ae"
     }
   ],
   "Importance": "Medium",
@@ -61,6 +65,19 @@
   "IsolatedNamespace": "pproj.Vote.Isolated",
   "IsVisible": false,
   "PublicFunctions": [
+    {
+      "Name": "CreateDraftTaskFromSurvey",
+      "Parameters": [
+        {
+          "Name": "surveyCreateDto",
+          "ParameterType": "global::pproj.Vote.Structures.Module.ISurveyCreateDto",
+          "ParameterTypeFullName": "pproj.Vote.Structures.Module.ISurveyCreateDto"
+        }
+      ],
+      "ReturnType": "global::System.Int64",
+      "ReturnTypeFullName": "System.Int64",
+      "WebApiRequestType": "Post"
+    },
     {
       "Name": "GetPollStatistic",
       "Parameters": [
@@ -88,10 +105,23 @@
       "WebApiRequestType": "Get"
     },
     {
+      "Name": "GetSurveyByAssignment",
+      "Parameters": [
+        {
+          "Name": "assignmentId",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        }
+      ],
+      "ReturnType": "global::pproj.Vote.Structures.Module.ISurveyGetDto",
+      "ReturnTypeFullName": "pproj.Vote.Structures.Module.ISurveyGetDto",
+      "WebApiRequestType": "Get"
+    },
+    {
       "Name": "SurveyCreate",
       "Parameters": [
         {
-          "Name": "surveyDto",
+          "Name": "surveyCreateDto",
           "ParameterType": "global::pproj.Vote.Structures.Module.ISurveyCreateDto",
           "ParameterTypeFullName": "pproj.Vote.Structures.Module.ISurveyCreateDto"
         }

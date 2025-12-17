@@ -45,19 +45,19 @@
           "Name": "Question",
           "DisplayNames": [
             {
-              "NameGuid": "768a039c-bd34-4209-8d82-563778e72c6f",
+              "NameGuid": "49938a83-c7c7-49d1-ac7c-27a435b917f1",
               "DisplayName": "Вопрос",
               "Locale": "ru"
             },
             {
-              "NameGuid": "c7b24a36-8c02-4b81-8050-b6d02d50d350",
+              "NameGuid": "c9cb4e51-0337-43db-a128-3f0aed6aebb6",
               "DisplayName": "Question",
               "Locale": "en"
             }
           ],
           "Loaders": [
             {
-              "NameGuid": "c7783f3e-9fa4-40ad-9588-ee43fc523aa4",
+              "NameGuid": "2089b76e-4511-47f8-adc2-a637ad968981",
               "Name": "question-card-loader"
             }
           ]
@@ -67,19 +67,19 @@
           "Name": "Gantt",
           "DisplayNames": [
             {
-              "NameGuid": "1f4243b0-126f-4f74-8076-9eef1686ae6a",
+              "NameGuid": "170d20fd-4b17-48ac-8d3e-2b4bcbc325fd",
               "DisplayName": "Gantt diagram",
               "Locale": "en"
             },
             {
-              "NameGuid": "774e170f-cbbe-4b60-a0b5-bc89113cba17",
+              "NameGuid": "47068df3-3e66-4a51-9080-e33e9c9cdea5",
               "DisplayName": "Диаграмма Ганта",
               "Locale": "ru"
             }
           ],
           "Loaders": [
             {
-              "NameGuid": "b96a4803-437a-4350-93a3-251aff199415",
+              "NameGuid": "8e82a8aa-149b-4ba4-84da-32f3b2c44215",
               "Name": "gantt-cover-loader",
               "Scope": "Cover"
             }
@@ -90,19 +90,19 @@
           "Name": "ActionsPanel",
           "DisplayNames": [
             {
-              "NameGuid": "4a127312-669a-45f4-a5d8-913b6fd864c1",
+              "NameGuid": "1f18cc61-5af7-449a-8a1a-9fca01b74211",
               "DisplayName": "Actions panel",
               "Locale": "en"
             },
             {
-              "NameGuid": "f6e27c28-caba-4d16-8245-cee3e2683917",
+              "NameGuid": "3a216b1a-1e0a-416a-897f-72623a9a48f9",
               "DisplayName": "Панель действий",
               "Locale": "ru"
             }
           ],
           "Loaders": [
             {
-              "NameGuid": "3627cce8-7ee8-435b-a892-5b96e30d0aca",
+              "NameGuid": "4c2a2091-42d3-4705-8027-be0bbd31117a",
               "Name": "actions-panel-cover-loader",
               "Scope": "Cover"
             }
@@ -113,19 +113,19 @@
           "Name": "StringControl",
           "DisplayNames": [
             {
-              "NameGuid": "21d79063-84c4-475c-a59a-7a04958ac1ca",
+              "NameGuid": "2728d647-79bd-4cda-94ab-a81ff6f07880",
               "DisplayName": "String property editor",
               "Locale": "en"
             },
             {
-              "NameGuid": "b326987a-9ad0-4b85-9d08-3f784cdc29c0",
+              "NameGuid": "90dcec5f-f21e-4a1b-914a-aa4a702a6d9c",
               "DisplayName": "Редактор строкового свойства",
               "Locale": "ru"
             }
           ],
           "Loaders": [
             {
-              "NameGuid": "7d12548b-71d3-4058-aa81-204d943f3144",
+              "NameGuid": "cb49e0dc-a880-4836-b197-80a0da1c3091",
               "Name": "string-control-card-loader"
             }
           ]
@@ -135,19 +135,19 @@
           "Name": "PerformedWorkDetailsGrid",
           "DisplayNames": [
             {
-              "NameGuid": "548a6804-dd78-4fe0-838c-367c5fe7fbf2",
+              "NameGuid": "093bc654-2b90-44f9-9425-4be209ae1223",
               "DisplayName": "Performed work details",
               "Locale": "en"
             },
             {
-              "NameGuid": "d9b90fb2-d4ab-4d9d-b960-3285e9e68254",
+              "NameGuid": "4483d421-675f-407d-8487-96824450ad3e",
               "DisplayName": "Список выполненных работ",
               "Locale": "ru"
             }
           ],
           "Loaders": [
             {
-              "NameGuid": "decdf80e-cc34-4dd8-aaac-496dfac6463c",
+              "NameGuid": "9c5110a2-cddc-4f44-923a-f0c843d37b4a",
               "Name": "performed-work-details-grid-card-loader"
             }
           ]

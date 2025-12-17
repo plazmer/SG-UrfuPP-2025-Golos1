@@ -22,6 +22,16 @@
   },
   "Forms": [
     {
+      "$type": "Sungero.Metadata.WorkflowEntityStandaloneFormMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "a4d6d92a-261a-4c7e-826d-742b7d4062ee",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ]
+    },
+    {
       "$type": "Sungero.Metadata.InplaceFormMetadata, Sungero.Metadata",
       "NameGuid": "a041028e-de9a-4b56-827f-e6190617b70e",
       "Name": "Page",
@@ -40,6 +50,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.RemoteControlBinder",
           "HeaderLocation": "None",
           "ParentGuid": "77f2c63e-624b-4227-a9da-8f675b9c3c09",
+          "PropertyGuid": "9dcb22ec-4c44-4829-9284-180ed155e501",
           "RemoteControlGuid": "0fe82587-d5f7-4da2-93a8-b24d886e5dc9",
           "RowNumber": 0,
           "RowSpan": 1,
@@ -74,6 +85,15 @@
       "Overridden": [
         "EntityGuid"
       ]
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9dcb22ec-4c44-4829-9284-180ed155e501",
+      "Name": "Survey",
+      "Code": "Survey",
+      "EntityGuid": "5939a5a5-8a96-4916-8d10-8c80acfaa8f9",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "3364c324-c4c4-4ccb-a81c-53653255a022"
     }
   ],
   "PublicStructures": [],
@@ -100,7 +120,11 @@
   "Scheme": {
     "NameGuid": "c7ae4ee8-f2a6-4784-8e61-7f7f642dbcd1",
     "Name": "RouteScheme",
+    "CurrentVersionGuid": "0745199f-eaac-4875-8563-40ed1e5ce317",
     "IsAncestorMetadata": true,
+    "Overridden": [
+      "CurrentVersionGuid"
+    ],
     "VersionsCounter": 1
   },
   "UseSchemeFromSettings": true,

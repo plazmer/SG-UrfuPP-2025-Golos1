@@ -40,25 +40,49 @@ namespace pproj.Vote.Server
     }
     
     /// <summary>
+    /// Создание черновика задачи
+    /// </summary>
+    [Public(WebApiRequestType = RequestType.Post)]
+    public virtual long CreateDraftTaskFromSurvey(Structures.Module.ISurveyCreateDto surveyCreateDto)
+    {
+      if (surveyCreateDto == null) throw new ArgumentNullException(nameof(surveyCreateDto));
+    
+      var task = pproj.Vote.VoteTasks.Create();
+      task.Subject = string.IsNullOrWhiteSpace(surveyCreateDto.SurveyName)
+        ? "Опрос"
+        : surveyCreateDto.SurveyName;
+    
+      task.Save();
+    
+      var surveyId = SurveyCreate(surveyCreateDto);
+      var survey = Surveys.Get(surveyId);
+    
+      task.Survey = survey;
+      task.Save();
+    
+      return task.Id;
+    }
+
+    /// <summary>
     /// Создать опрос
     /// </summary>
     [Public(WebApiRequestType = RequestType.Post)]
-    public virtual long SurveyCreate (Structures.Module.ISurveyCreateDto surveyDto)
+    public virtual long SurveyCreate (Structures.Module.ISurveyCreateDto surveyCreateDto)
     {
       // Создание оболочки опроса с настройками 
       var survey = Surveys.Create();
       
-      survey.SurveyName = surveyDto.SurveyName;
-      survey.Description = surveyDto.Description;
-      survey.IsAnonymous = surveyDto.IsAnonymous;
-      survey.IsMix = surveyDto.IsMix;
-      survey.IsShowProgress = surveyDto.IsShowProgress;
+      survey.SurveyName = surveyCreateDto.SurveyName;
+      survey.Description = surveyCreateDto.Description;
+      survey.IsAnonymous = surveyCreateDto.IsAnonymous;
+      survey.IsMix = surveyCreateDto.IsMix;
+      survey.IsShowProgress = surveyCreateDto.IsShowProgress;
       survey.Author = Users.Current;
       
       survey.Save();
       
       // Создание вопроса - оболочки для вариантов ответа
-      foreach (var pollDto in surveyDto.PollCreateDto)
+      foreach (var pollDto in surveyCreateDto.PollCreateDto)
       {
         var poll = Polls.Create();
         
@@ -123,9 +147,76 @@ namespace pproj.Vote.Server
       surveyGetDto.SurveyName = survey.SurveyName;
       surveyGetDto.Description = survey.Description;
       
+      var polls = Polls.GetAll().Where(x => x.Survey.Id == surveyId);
+      var pollList = new List<Structures.Module.IPollGetDto>();
+      
+      foreach (var poll in polls)
+      {
+        var pollGetDto = Structures.Module.PollGetDto.Create();
+        pollGetDto.IsMultipleChoice = (bool)poll.IsMultipleChoice;
+        pollGetDto.QuestionText = poll.QuestionText;
+        
+        var options = PollOptions.GetAll().Where(x => x.Poll.Id == poll.Id);
+        var optionsList = new List<Structures.Module.IPollOptionGetDto>(); 
+        
+        foreach (var option in options)
+        {
+          var optionGetDto = Structures.Module.PollOptionGetDto.Create();
+          
+          var t = option.PollOptionType.Value;
+          
+          if (t == pproj.Vote.PollOption.PollOptionType.Standard)
+            optionGetDto.Type = 0;
+          else if (t == pproj.Vote.PollOption.PollOptionType.Scale)
+            optionGetDto.Type = 1;
+          else if (t == pproj.Vote.PollOption.PollOptionType.Detailed)
+            optionGetDto.Type = 2;
+          else
+            throw new InvalidOperationException($"Неизвестный тип варианта ответа: {t}");
+          
+          optionGetDto.Text = option.Text;
+          optionGetDto.ScaleMin = option.ScaleMin ?? 0;
+          optionGetDto.ScaleMax = option.ScaleMax ?? 0;
+          optionGetDto.ScaleMinText = option.ScaleMinText;
+          optionGetDto.ScaleMaxText = option.ScaleMaxText;
+          
+          optionsList.Add(optionGetDto);
+        }
+        
+        pollGetDto.Options = optionsList;
+        pollList.Add(pollGetDto);
+      }
+      
+      surveyGetDto.PollGetDto = pollList;
+      
       // Формирование модели вопросов
       
       return surveyGetDto;
     }
+    
+    /// <summary>
+    /// Получить опрос, привязанный к родительской задаче, по ID задания
+    /// </summary>
+    [Public(WebApiRequestType = RequestType.Get)]
+    public virtual Structures.Module.ISurveyGetDto GetSurveyByAssignment(long assignmentId)
+    {
+      var assignment = Sungero.Workflow.Assignments.Get(assignmentId);
+      if (assignment == null)
+        throw new ArgumentException($"Assignment not found id:{assignmentId}");
+
+      var task = assignment.Task;
+      if (task == null)
+        throw new InvalidOperationException("Assignment has no parent task.");
+
+      var voteTask = pproj.Vote.VoteTasks.As(task);
+      if (voteTask == null)
+        throw new InvalidOperationException("Parent task is not VoteTask.");
+
+      if (voteTask.Survey == null)
+        throw new InvalidOperationException("Survey is not bound to the task.");
+
+      return GetSurvey(voteTask.Survey.Id);
+    }
+
   }
 }
