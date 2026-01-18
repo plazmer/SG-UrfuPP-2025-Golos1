@@ -189,6 +189,11 @@ namespace pproj.Vote.Structures.Module
   partial class PollGetDto
   {
     /// <summary>
+    /// Идентификатор вопроса (Poll).
+    /// </summary>
+    public long Id { get; set; }
+    
+    /// <summary>
     /// Вопрос
     /// </summary>
     public string QuestionText { get; set; }
@@ -210,6 +215,11 @@ namespace pproj.Vote.Structures.Module
   [Public]
   partial class PollOptionGetDto
   {
+    /// <summary>
+    /// Идентификатор варианта ответа (PollOption).
+    /// </summary>
+    public long Id { get; set; }
+    
     /// <summary>
     /// Текст варианта ответа
     /// </summary>
@@ -240,4 +250,49 @@ namespace pproj.Vote.Structures.Module
     /// </summary>
     public int ScaleMax { get; set; }
   }
+  
+  /// <summary>
+  /// DTO: проголосовать по опросу целиком.
+  /// </summary>
+  [Public]
+  partial class SurveyVoteDto
+  {
+    /// <summary>
+    /// Идентификатор опроса (Survey).
+    /// </summary>
+    public long SurveyId { get; set; }
+
+    /// <summary>
+    /// Ответы по вопросам (Poll).
+    /// </summary>
+    public List<pproj.Vote.Structures.Module.IPollVoteDto> Answers { get; set; }
+  }
+
+  /// <summary>
+  /// DTO: ответ на конкретный вопрос.
+  /// </summary>
+  [Public]
+  partial class PollVoteDto
+  {
+    /// <summary>
+    /// Идентификатор вопроса (Poll).
+    /// </summary>
+    public long PollId { get; set; }
+
+    /// <summary>
+    /// Выбранные варианты ответа (каждый будет сохранён как отдельный PollVote).
+    /// </summary>
+    public List<long> OptionIds { get; set; }
+
+    /// <summary>
+    /// Ответ для шкалы (если выбран вариант типа Scale).
+    /// </summary>
+    public int? ScaleAnswer { get; set; }
+
+    /// <summary>
+    /// Развёрнутый ответ (если выбран вариант типа Detailed).
+    /// </summary>
+    public string DetailedAnswer { get; set; }
+  }
+  
 }

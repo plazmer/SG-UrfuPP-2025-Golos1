@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
+using Sungero.Company;
 
 namespace pproj.Vote.Server
 {
@@ -153,6 +154,7 @@ namespace pproj.Vote.Server
       foreach (var poll in polls)
       {
         var pollGetDto = Structures.Module.PollGetDto.Create();
+        pollGetDto.Id = poll.Id;
         pollGetDto.IsMultipleChoice = (bool)poll.IsMultipleChoice;
         pollGetDto.QuestionText = poll.QuestionText;
         
@@ -162,6 +164,7 @@ namespace pproj.Vote.Server
         foreach (var option in options)
         {
           var optionGetDto = Structures.Module.PollOptionGetDto.Create();
+          optionGetDto.Id = option.Id;
           
           var t = option.PollOptionType.Value;
           
@@ -218,5 +221,107 @@ namespace pproj.Vote.Server
       return GetSurvey(voteTask.Survey.Id);
     }
 
+    /// <summary>
+    /// Проголосовать по опросу (Survey).
+    /// Повторное голосование запрещено.
+    /// Каждый выбранный вариант (Option) сохраняется отдельной записью PollVote.
+    /// </summary>
+    [Public(WebApiRequestType = RequestType.Post)]
+    public virtual void VoteSurvey(Structures.Module.ISurveyVoteDto surveyVoteDto)
+    {
+      if (surveyVoteDto == null)
+        throw new ArgumentNullException(nameof(surveyVoteDto));
+    
+      if (surveyVoteDto.SurveyId <= 0)
+        throw new ArgumentException("Не передан SurveyId.");
+    
+      if (surveyVoteDto.Answers == null || !surveyVoteDto.Answers.Any())
+        throw new ArgumentException("Не переданы ответы по вопросам (Answers).");
+    
+      var survey = Surveys.GetAll().FirstOrDefault(x => x.Id == surveyVoteDto.SurveyId);
+      if (survey == null)
+        throw new ArgumentException($"Survey not found id:{surveyVoteDto.SurveyId}");
+
+      var currentEmployee = Users.Current;
+    
+      if (currentEmployee == null)
+        throw new InvalidOperationException("Не удалось определить сотрудника текущего пользователя.");
+    
+      var alreadyVoted = PollVotes.GetAll()
+        .Where(x => x.Poll.Survey.Id == survey.Id &&
+                    x.Employee != null &&
+                    x.Employee.Id == currentEmployee.Id)
+        .Any();
+    
+      if (alreadyVoted)
+        throw new InvalidOperationException("Повторное голосование запрещено. Вы уже голосовали в этом опросе.");
+    
+      var polls = Polls.GetAll().Where(x => x.Survey.Id == survey.Id).ToList();
+      var pollIdsInSurvey = polls.Select(p => p.Id).Distinct().ToList();
+    
+      foreach (var a in surveyVoteDto.Answers)
+      {
+        if (a == null)
+          throw new ArgumentException("Answers содержит пустой элемент.");
+    
+        if (!pollIdsInSurvey.Contains(a.PollId))
+          throw new InvalidOperationException($"PollId {a.PollId} не принадлежит SurveyId {survey.Id}.");
+      }
+    
+      foreach (var answer in surveyVoteDto.Answers)
+      {
+        var poll = polls.FirstOrDefault(p => p.Id == answer.PollId);
+        if (poll == null)
+          throw new InvalidOperationException($"Poll not found id:{answer.PollId}");
+    
+        var isMultipleChoice = poll.IsMultipleChoice ?? false;
+    
+        var optionIds = (answer.OptionIds ?? new List<long>())
+          .Where(x => x > 0)
+          .Distinct()
+          .ToList();
+    
+        if (!optionIds.Any())
+          throw new InvalidOperationException($"Не выбраны варианты ответа для PollId {poll.Id}.");
+    
+        if (!isMultipleChoice && optionIds.Count > 1)
+          throw new InvalidOperationException($"PollId {poll.Id} не поддерживает множественный выбор.");
+    
+        var options = PollOptions.GetAll()
+          .Where(x => x.Poll.Id == poll.Id && optionIds.Contains(x.Id))
+          .ToList();
+    
+        if (options.Count != optionIds.Count)
+          throw new InvalidOperationException($"Для PollId {poll.Id} переданы чужие/несуществующие OptionIds.");
+    
+        foreach (var option in options)
+        {
+          var vote = PollVotes.Create();
+          vote.Poll = poll;
+          vote.Option = option;
+          vote.Employee = currentEmployee;
+          vote.VoteDate = Calendar.Now;
+    
+          var t = option.PollOptionType.Value;
+    
+          if (t == pproj.Vote.PollOption.PollOptionType.Scale)
+          {
+            if (answer.ScaleAnswer == null)
+              throw new InvalidOperationException($"Для PollId {poll.Id} выбран Scale-вариант, но не передан ScaleAnswer.");
+    
+            vote.ScaleAnswer = answer.ScaleAnswer;
+          }
+          else if (t == pproj.Vote.PollOption.PollOptionType.Detailed)
+          {
+            if (string.IsNullOrWhiteSpace(answer.DetailedAnswer))
+              throw new InvalidOperationException($"Для PollId {poll.Id} выбран Detailed-вариант, но не передан DetailedAnswer.");
+    
+            vote.DetailedAnswer = answer.DetailedAnswer;
+          }
+    
+          vote.Save();
+        }
+      }
+    }
   }
 }

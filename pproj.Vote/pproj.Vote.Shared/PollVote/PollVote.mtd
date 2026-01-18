@@ -69,7 +69,7 @@
       "NameGuid": "d35fdbb2-4955-4317-bef3-c8a44fdaa6c0",
       "Name": "Employee",
       "Code": "Employee",
-      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "EntityGuid": "243c2d26-f5f7-495f-9faf-951d91215c77",
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "4cb78b7f-98b9-4665-b879-30851e2483bc"
